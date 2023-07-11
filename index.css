@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.card{
+  width:18rem;
+}
+.col-4{
+  margin-left: 60px;
+}
+
+#background{
+  position:relative;
+  height:500px;
+  /* display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center; */
+}
+#background #introduction{
+  position: absolute;
+  left:10%;
+  top: 40%;
+  width:175px;
+}
+#background #headline{
+  font-weight:bold;
+  font-size:30px;
+}
+#background #avatar img{
+  position: absolute;
+  width:200px;
+  top:40%;
+  right:10%;
+  border-radius:50%;
+}
+svg{
+  margin-left:15px;
+}
+#skillsContainer{
+  position:relative;
+}
+#skillsContainer img{
+  width:100vw;
+  height:100vh;
+  z-index:-1;
+}
+#skills{
+  position:absolute;
+  top:0%;
+}
+.nav{
+  background-color:white;
+}
+/* this is for screen with <=450px wide */
+@media screen and (max-width:450px){
+  #background #avatar img{
+    position: absolute;
+    width:200px;
+    top:10%;
+    right:32%;
+    border-radius:50%;
+  }
+}

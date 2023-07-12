@@ -12,13 +12,14 @@ const Body = ()=>{
       <section id="background" >
           <ul className="nav">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
+              <a className="nav-link active" aria-current="page" href="./body">Home</a>
+            </li>
+          {/* reminder: in the href part, don't use something like ./body.js. Just use './body so that it will come out exactly like on the browser's url  */}
+            <li className="nav-item">
+              <a className="nav-link" href="./interests">Interests</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">About</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="#">Skills</a>
+              <a className="nav-link" href="./skills">Skills</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">Education</a>

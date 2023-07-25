@@ -1,9 +1,6 @@
 import React, {useState,  useEffect, useRef} from 'react';
 import {createRoot} from 'react-dom/client';
-//import 'bootstrap/dist/css/bootstrap.css';
-import Skills from './skills.js';
-import Axios from 'axios';
-import FormData from 'form-data';
+
 const Body = ()=>{
     const rootModule = document.getElementById('root');
     const root = createRoot(rootModule);
@@ -16,13 +13,13 @@ const Body = ()=>{
         postData();
     })
     const postData = ()=>{
-      if(document.getElementById('email').value!=undefined && document.getElementById('password').value!=undefined){
+      if(document.getElementById('email').value!=undefined && document.getElementById('message').value!=undefined){
         fetch('http://localhost:5000/postData',{
           method: "post",
           headers:{
             'Content-type':'application/json'
           },
-          body: JSON.stringify({"email": ''+data1, "password": ''+data2})
+          body: JSON.stringify({"email": ''+data1, "message": ''+data2})
         })
         .then(
           res=>res.json()
@@ -60,7 +57,7 @@ const Body = ()=>{
               Hi there
               I'm Danny Dang
               </h1>
-              <span>I am into</span><p>web developing. PLease review my page to know more about me</p>
+              <span>I am an international student from Vietnam, currently studying for a Bachelor degree at Camosun College,Victoria,Canada and I am into</span><p>web developing. PLease review my page to know more about me</p>
               
             </div>
             <div id="avatar">
@@ -68,7 +65,7 @@ const Body = ()=>{
             </div>
         </section>
       <section id="about" className="row">
-            <div className="row ">
+            <div className="row">
               <div className="card col-6  " id="experiences">
                 <img src="https://www.tailieuielts.com/wp-content/uploads/2022/01/experience-di-voi-gioi-tu-gi.jpg" alt='hobby' className="card-img-top"></img>
                 <div className="card-body">
@@ -169,28 +166,31 @@ const Body = ()=>{
               
         </div>
 
-      <section index="email" className="mt-5 col">
-      <form action = "http://localhost:5000/postData"method="post" id="form">
-        <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">Email address</label>
-          <input type="email" className="form-control" id="email" aria-describedby="emailHelp" />
-          <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-        </div>
-        <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">Password</label>
-          <input type="password" className="form-control" id="password" />
-        </div>
-        <div className="mb-3 form-check">
-          <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-          <label className="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" onClick={()=>{
-          if(document.getElementById('email').value!=undefined && document.getElementById('password').value!=undefined){
-            setPostData1(document.getElementById('email').value);
-            setPostData2(document.getElementById('password').value);
-          }
-        }}className="btn btn-primary">Submit</button>
-      </form>
+      <section index="emailAndMessage" className="mt-5 col">
+        <form action = "http://localhost:5000/postData"method="post" id="form">
+          <div className="mb-3">
+            <label for="email" className="form-label">Email address</label>
+            <input type="email" className="form-control" id="email" aria-describedby="emailHelp"/>
+            <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div className="mb-3">
+            <label for="message" className="form-label">Message</label>
+            <textarea className="form-control" id="message"/>
+          </div>
+          <button type="submit" onClick={()=>{
+            const emailPattern=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if(document.getElementById('email').value!=undefined && document.getElementById('message').value!=undefined && emailPattern.test(document.getElementById('email').value)){
+              const email=document.getElementById('email').value;
+              const message=document.getElementById('message').value;
+              setPostData1(email);
+              setPostData2(message);
+            }
+            else{
+              console.log('Invalid submit');
+            }
+          }}className="btn btn-primary">Submit</button>
+          <p id="inputError"></p>
+        </form>
       </section>
       </div>
       </section>
